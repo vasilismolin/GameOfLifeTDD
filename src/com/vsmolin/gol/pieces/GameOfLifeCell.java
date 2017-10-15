@@ -4,7 +4,7 @@ import com.vsmolin.gol.gui.iDrawable;
 
 import java.util.ArrayList;
 
-public class GameOfLifeCell implements iGamePiece
+public class GameOfLifeCell extends GridCell
 {
 
     //TODO setAlive(bool) vs setState(bool) vs setAlive/setDead vs state enum

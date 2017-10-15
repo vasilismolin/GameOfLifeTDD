@@ -11,20 +11,13 @@ import java.util.ArrayList;
  * Decoupled from GridField in order to simplify Field's
  * construction.
  */
-public class GridCells <P extends GridCell>
+public class CellMatrix<P extends GridCell>
         implements iGamePieces <GridCell>, iDrawable, iRulled
 {
     ArrayList<ArrayList<P>> cellMatrix;
     Integer gridSize = null;
 
-    public GridCells() {}
-
-    public GridCells(int size, iPieceFactory factory)
-    {
-        if(size <= 0) throw new IllegalArgumentException("Grid size must be positive integer");
-        gridSize = size;
-        cellMatrix = PieceMatrixFactory.<P>buildPieceMatrix(gridSize, factory);
-    }
+    public CellMatrix() {}
 
     public void setCellMatrix(ArrayList<ArrayList<P>> matrix)
     {
@@ -41,19 +34,15 @@ public class GridCells <P extends GridCell>
         return cellMatrix;
     }
 
-    public boolean equals(GridCells<P> otherGrid)
+    public Integer getGridSize()
     {
-        if (this.gridSize != otherGrid.gridSize)
-            return false;
-        for(int coll = 0; coll < this.gridSize; coll++)
-        {
-            for(int row = 0; row < this.gridSize; row++)
-            {
-                if(!this.getCell(coll,row).equals(otherGrid.getCell(coll, row)))
-                    return false;
-            }
-        }
-        return true;
+        return gridSize;
+    }
+
+    public void setGridSize(int size)
+    {
+        if(size <= 0) throw new IllegalArgumentException("Grid size must be positive integer");
+        gridSize = size;
     }
 
     public void setCell(int coll, int row, P cell)
@@ -75,9 +64,19 @@ public class GridCells <P extends GridCell>
         return cellMatrix.get(coll).get(row);
     }
 
-    public Integer getGridSize()
+    public boolean equals(CellMatrix<P> otherGrid)
     {
-        return gridSize;
+        if (this.gridSize != otherGrid.gridSize)
+            return false;
+        for(int coll = 0; coll < this.gridSize; coll++)
+        {
+            for(int row = 0; row < this.gridSize; row++)
+            {
+                if(!this.getCell(coll,row).equals(otherGrid.getCell(coll, row)))
+                    return false;
+            }
+        }
+        return true;
     }
 
     public void draw()

@@ -1,10 +1,10 @@
 package com.vsmolin.gol.rules;
 
-import com.vsmolin.gol.pieces.GridCells;
+import com.vsmolin.gol.pieces.CellMatrix;
 
 public class GameOfLifeRuleSurvival extends GridCellRule
 {
-    public void apply(GridCells<?> cells, int coll, int row)
+    public void apply(CellMatrix<?> cells, int coll, int row)
     {
 
     }

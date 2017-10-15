@@ -2,7 +2,7 @@ package com.vsmolin.gol.board;
 
 import com.vsmolin.gol.gui.iDrawable;
 import com.vsmolin.gol.pieces.GameOfLifeCell;
-import com.vsmolin.gol.pieces.GridCells;
+import com.vsmolin.gol.pieces.CellMatrix;
 import com.vsmolin.gol.pieces.iGamePieces;
 import com.vsmolin.gol.rules.iApplied;
 import com.vsmolin.gol.rules.iRulled;
@@ -10,7 +10,7 @@ import com.vsmolin.gol.rules.iRulled;
 public class GameOfLifeBoard implements iBoard, iDrawable, iRulled
 {
     GridField playingField;
-    GridCells<? extends GameOfLifeCell> gamePieces;
+    CellMatrix<? extends GameOfLifeCell> gamePieces;
 
     public void progress()
     {//TODO implement
@@ -27,7 +27,7 @@ public class GameOfLifeBoard implements iBoard, iDrawable, iRulled
 
     public void setGamePieces(iGamePieces gamePieces)
     {
-        this.gamePieces = (GridCells<? extends GameOfLifeCell>)gamePieces;
+        this.gamePieces = (CellMatrix<? extends GameOfLifeCell>)gamePieces;
     }
     public iGamePieces getGamePieces()
     {

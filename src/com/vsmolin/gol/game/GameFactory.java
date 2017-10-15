@@ -2,10 +2,8 @@ package com.vsmolin.gol.game;
 
 import com.vsmolin.gol.board.*;
 import com.vsmolin.gol.flow.LoopFlow;
-import com.vsmolin.gol.pieces.GameOfLifeCell;
-import com.vsmolin.gol.pieces.GameOfLifeCellFactory;
-import com.vsmolin.gol.pieces.GridCells;
-import com.vsmolin.gol.pieces.iGamePieces;
+import com.vsmolin.gol.pieces.*;
+import com.vsmolin.gol.rules.GridCellRule;
 
 public class GameFactory
 {
@@ -32,12 +30,12 @@ public class GameFactory
         }
         else
         {
-            GameOfLifeCellFactory testFactory = new GameOfLifeCellFactory();
-            GridCells<GameOfLifeCell> newState =
-                    new GridCells<GameOfLifeCell>(size, testFactory);
+            GameOfLifeCellFactory testCellFactory = new GameOfLifeCellFactory();
+            CellMatrixFactory testCellsFactory = new CellMatrixFactory();
+            CellMatrix<GameOfLifeCell> newState = CellMatrixFactory.buildCellMatrix(size, testCellFactory);
         }
 
-        GameOfLifeRules testedRules = new GameOfLifeRules();
+        GridCellRule[] testedRules = new GridCellRule[0];
         newGame.setRules(testedRules);
         //TODO need a factory for rule set
 

@@ -1,6 +1,6 @@
 package com.vsmolin.gol.board;
 
-import com.vsmolin.gol.rules.iGameRules;
+import com.vsmolin.gol.rules.iApplied;
 import com.vsmolin.gol.rules.iRulled;
 
 //TODO relation of field size and GamePieces size and num of cells
@@ -22,7 +22,7 @@ public class GridField implements iField,iRulled
         //TODO implement
     }
 
-    public void applyRules(iGameRules rulesToApply)
+    public void applyRules(iApplied[] rulesToApply)
     {
         //to nothing
     }

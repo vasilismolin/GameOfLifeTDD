@@ -20,7 +20,7 @@ public class BoardTest
         testedBoard.setField(testedField);
         Assert.assertEquals(testedField, testedBoard.getField());
 
-        iGamePieces testedCells = new GridCells();
+        iGamePieces testedCells = new CellMatrix();
         testedBoard.setGamePieces(testedCells);
         Assert.assertEquals(testedCells, testedBoard.getGamePieces());
     }
@@ -65,8 +65,8 @@ public class BoardTest
         testedBoard.setField(testField);
 
         int gridSize = 100;
-        GridCells<TestGameOfLifeCell> testCells =
-                new GridCells<TestGameOfLifeCell>(gridSize, new TestCellFactory());
+        CellMatrix<TestGameOfLifeCell> testCells =
+                CellMatrixFactory.buildCellMatrix(gridSize, new TestCellFactory());
         testedBoard.setGamePieces(testCells);
 
         testedBoard.draw();
