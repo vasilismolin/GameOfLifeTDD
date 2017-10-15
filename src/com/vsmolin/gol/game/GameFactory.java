@@ -6,7 +6,6 @@ import com.vsmolin.gol.pieces.GameOfLifeCell;
 import com.vsmolin.gol.pieces.GameOfLifeCellFactory;
 import com.vsmolin.gol.pieces.GridCells;
 import com.vsmolin.gol.pieces.iGamePieces;
-import com.vsmolin.gol.rules.GameOfLifeRules;
 
 public class GameFactory
 {

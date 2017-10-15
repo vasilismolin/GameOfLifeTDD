@@ -21,7 +21,6 @@ public class FlowTest
         testFlow.start();
         try
         {
-            int a = 3;
             Thread.sleep(waitTime);
         } catch (Exception e){}
         testFlow.stop();

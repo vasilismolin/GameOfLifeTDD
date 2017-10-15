@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class RulesTest
 {
     @Test
-    public void testGameOfLifeRules()
+    public void testGenericRuleAppply()
     {
         class DummyRule implements iApplied
         {
@@ -20,26 +20,21 @@ public class RulesTest
             public int check() {return _val;}
         }
 
-        GameOfLifeRules<DummyRule> testedRules =
-                new GameOfLifeRules<DummyRule>();
-        ArrayList<DummyRule> dummyRuleList = new ArrayList<DummyRule>();
-        testedRules.setRulesList(dummyRuleList);
+        //ArrayList<DummyRule> dummyRuleList = new ArrayList<DummyRule>();
 
-        ArrayList<Integer> setValues =
-                new ArrayList<Integer>(Arrays.asList(1,3,4,6,34));
-        ArrayList<Integer> checkValues =
-                new ArrayList<Integer>(Arrays.asList(11,13,14,16,44));
+        int[] setValues = {1,3,4,6,34};
+        int[] checkValues = {11,13,14,16,44};
 
-        for(Integer setValue:setValues)
+        DummyRule[] testedRules = new DummyRule[setValues.length];
+        for(int i = 0; i < setValues.length; i++)
         {
-            dummyRuleList.add(new DummyRule(setValue));
+            testedRules[i] = new DummyRule(setValues[i]);
+            testedRules[i].apply(null);
         }
 
-        testedRules.apply(null);
-        for(int i = 0; i < setValues.size(); i++)
+        for(int i = 0; i < setValues.length; i++)
         {
-            Assert.assertEquals(checkValues.get(i).intValue(),
-                    testedRules.getRulesList().get(i).check());
+            Assert.assertEquals(checkValues[i], testedRules[i].check());
         }
     }
 }
