@@ -95,7 +95,7 @@ public class GridCells <P extends iGamePiece>
     //Asumes rules are mutually exclusive
     //TODO needs a better abstraction around rules
     //how to restrict to GOL related rules
-    public void applyRules(iGameRules<? extends iApplied> rulesToApply)
+    public void applyRules(iGameRules<?> rulesToApply)
     {
      /*   for(int coll = 0; coll < gridSize; coll++)
         {

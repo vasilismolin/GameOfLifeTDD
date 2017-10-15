@@ -21,9 +21,7 @@ public class FlowTest
         testFlow.start();
         try
         {
-            Thread.sleep(waitTime/4);
-            Assert.assertTrue(testFlow.isRunning());
-            Thread.sleep((waitTime/4)*3);
+            Thread.sleep(waitTime);
         } catch (Exception e){}
         testFlow.stop();
         Assert.assertFalse(testFlow.isRunning());
