@@ -4,7 +4,7 @@ import com.vsmolin.gol.gui.iDrawable;
 import com.vsmolin.gol.pieces.GameOfLifeCell;
 import com.vsmolin.gol.pieces.GridCells;
 import com.vsmolin.gol.pieces.iGamePieces;
-import com.vsmolin.gol.rules.iGameRules;
+import com.vsmolin.gol.rules.iApplied;
 import com.vsmolin.gol.rules.iRulled;
 
 public class GameOfLifeBoard implements iBoard, iDrawable, iRulled
@@ -40,7 +40,7 @@ public class GameOfLifeBoard implements iBoard, iDrawable, iRulled
         gamePieces.draw();
     }
 
-    public void applyRules(iGameRules rulesToApply)
+    public void applyRules(iApplied[] rulesToApply)
     {
         playingField.applyRules(rulesToApply);
         gamePieces.applyRules(rulesToApply);

@@ -16,25 +16,6 @@ import java.util.Arrays;
 
 public class GameTest
 {
-
-    @Test
-    public void initGame()
-    {
-        iGame testedGame = new GameOfLife();
-
-        iBoard testedState = new GameOfLifeBoard();
-        testedGame.setBoard(testedState);
-        Assert.assertEquals(testedState, testedGame.getBoard());
-
-        iGameRules testedRules = new GameOfLifeRules();
-        testedGame.setRules(testedRules);
-        Assert.assertEquals(testedRules, testedGame.getGameRules());
-
-        iGameFlow testedFlow = new LoopFlow(testedGame, 1000);
-        testedGame.setGameFlow(testedFlow);
-        Assert.assertEquals(testedFlow, testedGame.getGameFlow());
-    }
-
     @Test
     @Ignore
     public void gameOfLifeTest()

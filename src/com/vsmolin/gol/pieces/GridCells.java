@@ -2,7 +2,6 @@ package com.vsmolin.gol.pieces;
 
 import com.vsmolin.gol.gui.iDrawable;
 import com.vsmolin.gol.rules.iApplied;
-import com.vsmolin.gol.rules.iGameRules;
 import com.vsmolin.gol.rules.iRulled;
 
 import java.util.ArrayList;
@@ -12,8 +11,8 @@ import java.util.ArrayList;
  * Decoupled from GridField in order to simplify Field's
  * construction.
  */
-public class GridCells <P extends iGamePiece>
-        implements iGamePieces <P>, iDrawable, iRulled
+public class GridCells <P extends GridCell>
+        implements iGamePieces <GridCell>, iDrawable, iRulled
 {
     ArrayList<ArrayList<P>> cellMatrix;
     Integer gridSize = null;
@@ -95,7 +94,7 @@ public class GridCells <P extends iGamePiece>
     //Asumes rules are mutually exclusive
     //TODO needs a better abstraction around rules
     //how to restrict to GOL related rules
-    public void applyRules(iGameRules<?> rulesToApply)
+    public void applyRules(iApplied[] rulesToApply)
     {
      /*   for(int coll = 0; coll < gridSize; coll++)
         {

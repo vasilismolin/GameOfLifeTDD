@@ -4,12 +4,11 @@ import com.vsmolin.gol.board.*;
 import com.vsmolin.gol.flow.LoopFlow;
 import com.vsmolin.gol.flow.iGameFlow;
 import com.vsmolin.gol.rules.*;
-import org.junit.Assert;
 
 public class GameOfLife implements iGame
 {
     private GameOfLifeBoard stateBoard;
-    private GameOfLifeRules gameRules;
+    private GridCellRule[] cellRules;
     private LoopFlow gameFlow;
 
     public void start()
@@ -24,7 +23,7 @@ public class GameOfLife implements iGame
 
     public void progress()
     {
-        stateBoard.applyRules(gameRules);
+        stateBoard.applyRules(cellRules);
     }
 
     public void step(int numSteps)
@@ -48,13 +47,13 @@ public class GameOfLife implements iGame
         return stateBoard;
     }
 
-    public void setRules(iGameRules rules)
+    public void setRules(GridCellRule[] rules)
     {
-        gameRules = (GameOfLifeRules)rules;
+        cellRules = rules;
     }
-    public iGameRules getGameRules()
+    public GridCellRule[] getGameRules()
     {
-        return gameRules;
+        return cellRules;
     }
 
     public void setGameFlow(iGameFlow controllingFlow) {gameFlow = (LoopFlow)controllingFlow; }
