@@ -1,6 +1,7 @@
 package com.vsmolin.gol.pieces;
 
 import com.vsmolin.gol.gui.iDrawable;
+import com.vsmolin.gol.rules.iApplied;
 
 import java.util.ArrayList;
 
@@ -27,13 +28,20 @@ public class GameOfLifeCell extends GridCell
         return alive;
     }
 
-    public boolean equals(iGamePiece otherPiece)
+    public boolean equals(Object otherCell)
     {
-        if(!(otherPiece instanceof GameOfLifeCell))
-            return false;
+        if(otherCell == null) return false;
+        if(otherCell == this) return true;
+        if(!(otherCell instanceof GameOfLifeCell)) return false;
 
-        return this.getAlive() == ((GameOfLifeCell) otherPiece).getAlive();
+        return this.getAlive() == ((GameOfLifeCell) otherCell).getAlive();
     }
+
+    public void applyRules(iApplied[] rules)
+    {
+
+    }
+
 
     public void draw()
     {

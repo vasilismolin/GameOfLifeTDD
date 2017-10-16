@@ -12,10 +12,10 @@ import java.util.ArrayList;
  * construction.
  */
 public class CellMatrix<P extends GridCell>
-        implements iGamePieces <GridCell>, iDrawable, iRulled
+        implements iGamePieces<P>, iDrawable, iRulled
 {
-    ArrayList<ArrayList<P>> cellMatrix;
-    Integer gridSize = null;
+    private ArrayList<ArrayList<P>> cellMatrix;
+    private Integer gridSize = null;
 
     public CellMatrix() {}
 
@@ -64,20 +64,25 @@ public class CellMatrix<P extends GridCell>
         return cellMatrix.get(coll).get(row);
     }
 
-    public boolean equals(CellMatrix<P> otherGrid)
+    /*public boolean equals(Object otherMatrix)
     {
-        if (this.gridSize != otherGrid.gridSize)
+        if(otherMatrix == null) return false;
+        if(otherMatrix == this) return true;
+        if(!(otherMatrix instanceof CellMatrix)) return false;
+
+        CellMatrix otherCellMatrix = (CellMatrix)otherMatrix;
+        if (this.gridSize != otherCellMatrix.gridSize)
             return false;
         for(int coll = 0; coll < this.gridSize; coll++)
         {
             for(int row = 0; row < this.gridSize; row++)
             {
-                if(!this.getCell(coll,row).equals(otherGrid.getCell(coll, row)))
+                if(!this.getCell(coll,row).equals(otherCellMatrix.getCell(coll, row)))
                     return false;
             }
         }
         return true;
-    }
+    }*/
 
     public void draw()
     {
