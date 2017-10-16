@@ -160,11 +160,7 @@ public class CellsTest
         {
             for(int row = 0; row < testSize; row++)
             {
-
-                //TODO seems to be a bug in JUnit here
-                //Assert.assertEquals(expectedArray.get(coll).get(row), testArray.get(coll).get(row));
-                if(!expectedCells.getCell(coll, row).equals(testCells.getCell(coll, row)))
-                    Assert.fail("Cells not equal");
+                Assert.assertEquals(expectedCells, testCells);
             }
         }
     }

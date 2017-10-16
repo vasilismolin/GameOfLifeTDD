@@ -1,6 +1,7 @@
 package com.vsmolin.gol.pieces;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CellMatrixFactory
 {
@@ -38,5 +39,24 @@ public class CellMatrixFactory
         newGridCells.setCellMatrix(matrix);
 
         return newGridCells;
+    }
+
+    private static <C extends GridCell> C[] getNeighbours(int coll, int row, CellMatrix<C> matrix)
+    {
+        ArrayList<C> neighbours = new ArrayList<>();
+        int[] indexes = {-1,0,1};
+        for(int collIndex : indexes)
+        {
+            for(int rowIndex : indexes)
+            {
+                if (collIndex == 0 && rowIndex == 0)
+                    continue;
+                C nearCell = matrix.getCell(coll+collIndex, row+rowIndex);
+                if(nearCell != null)
+                    neighbours.add(nearCell);
+            }
+        }
+
+        return (C[])neighbours.toArray(); //not the best solution here.
     }
 }

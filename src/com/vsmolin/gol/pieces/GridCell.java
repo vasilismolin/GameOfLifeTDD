@@ -10,5 +10,13 @@ public abstract class GridCell implements iGamePiece, iDrawable, iRulled
     public abstract void draw();
     public abstract void applyRules(iApplied[] rules);
 
-    //public void setNeighbours()
+    private GridCell[] neighbours;
+    public void setNeighbours(GridCell[] otherCells)
+    {
+        neighbours = otherCells;
+    }
+    public GridCell[] getNeighbours()
+    {
+        return neighbours;
+    }
 }

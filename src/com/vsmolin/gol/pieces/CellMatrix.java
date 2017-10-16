@@ -59,12 +59,11 @@ public class CellMatrix<P extends GridCell>
 
     public P getCell(int coll, int row)
     {
-        if(coll >= gridSize || row >= gridSize)
-            throw new IllegalArgumentException("Given column or row argument is beyound thrid size.");
+        if(coll >= gridSize || row >= gridSize || coll < 0 || row < 0) return null;
         return cellMatrix.get(coll).get(row);
     }
 
-    /*public boolean equals(Object otherMatrix)
+    public boolean equals(Object otherMatrix)
     {
         if(otherMatrix == null) return false;
         if(otherMatrix == this) return true;
@@ -82,7 +81,7 @@ public class CellMatrix<P extends GridCell>
             }
         }
         return true;
-    }*/
+    }
 
     public void draw()
     {
