@@ -3,6 +3,7 @@ package com.vsmolin.gol.pieces;
 import com.sun.istack.internal.localization.NullLocalizable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameOfLifeCellFactory implements iPieceFactory
 {
@@ -24,6 +25,19 @@ public class GameOfLifeCellFactory implements iPieceFactory
         else
             buildPattern = pattern;
 
+        if(buildPattern != null)
+        {
+            currentRowIndex = -1;
+            currentCollIndex = -1;
+        }
+    }
+
+    public GameOfLifeCellFactory(String pattern)
+    {
+        if(pattern.length() == 0)
+            buildPattern = null;
+        else
+            buildPattern = new ArrayList(Arrays.<String>asList(pattern));
         if(buildPattern != null)
         {
             currentRowIndex = -1;

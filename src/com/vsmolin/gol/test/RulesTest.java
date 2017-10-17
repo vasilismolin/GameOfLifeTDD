@@ -1,23 +1,25 @@
 package com.vsmolin.gol.test;
 
-import com.vsmolin.gol.game.*;
-import com.vsmolin.gol.pieces.GridCell;
+import com.vsmolin.gol.game.GameOfLife;
+import com.vsmolin.gol.pieces.GameOfLifeCell;
+import com.vsmolin.gol.pieces.GameOfLifeCellFactory;
 import com.vsmolin.gol.rules.*;
 import org.junit.Assert;
 import org.junit.Test;
-import java.util.Arrays;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RulesTest
 {
     @Test
     public void testGenericRuleAppply()
     {
-        class DummyRule<GameOfLifeCell extends iRulled> implements iApplied<GameOfLifeCell>
+        class DummyRule implements iApplied<GameOfLifeCell>
         {
             int _val;
             public DummyRule(int val) {_val = val;}
-            public void apply(GameOfLifeCell o){_val += 10;}
+            public boolean apply(GameOfLifeCell o){_val += 10; return true;}
             public int check() {return _val;}
         }
 
@@ -35,5 +37,73 @@ public class RulesTest
         {
             Assert.assertEquals(checkValues[i], testedRules[i].check());
         }
+    }
+
+    @Test
+    public void golRulesDeadAnd3LiveNeighbours()
+    {
+        String pattern = "010101000"; //the tested cell and 8 neighbours
+        GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
+        testCell.applyRules(buildGOLRules());
+        Assert.assertTrue(testCell.getAlive());
+    }
+    @Test
+    public void golRulesDeadAnd2LiveNeighbours()
+    {
+        String pattern = "000101000"; //the tested cell and 8 neighbours
+        GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
+    }
+    @Test
+    public void golRulesDeadAnd4LiveNeighbours()
+    {
+        String pattern = "010111000"; //the tested cell and 8 neighbours
+        GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
+    }
+    @Test
+    public void golRulesAliveAnd1LiveNeighbours()
+    {
+        String pattern = "100001000"; //the tested cell and 8 neighbours
+        GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
+    }
+    @Test
+    public void golRulesAliveAnd2LiveNeighbours()
+    {
+        String pattern = "100101000"; //the tested cell and 8 neighbours
+        GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
+    }
+    @Test
+    public void golRulesAliveAnd3LiveNeighbours()
+    {
+        String pattern = "100000111"; //the tested cell and 8 neighbours
+        GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
+    }
+    @Test
+    public void golRulesAliveAnd4LiveNeighbours()
+    {
+        String pattern = "110101010"; //the tested cell and 8 neighbours
+        GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
+    }
+
+    private GameOfLifeCell buildCellWithNeighbours(String pattern)
+    {
+        GameOfLifeCellFactory factory = new GameOfLifeCellFactory(pattern);
+        GameOfLifeCell mainCell = (GameOfLifeCell)factory.createPiece();
+        GameOfLifeCell[] neighbours = new GameOfLifeCell[pattern.length()-1];
+        for(int i=1;i<pattern.length();i++)
+        {
+            neighbours[i-1] = (GameOfLifeCell)factory.createPiece();
+        }
+        mainCell.setNeighbours(neighbours);
+        return mainCell;
+    }
+
+    private iApplied<GameOfLifeCell>[] buildGOLRules()
+    {
+        iApplied<GameOfLifeCell>[] rules = new iApplied[4];
+        rules[0] = new GameOfLifeRuleOverpopulation();
+        rules[1] = new GameOfLifeRuleSurvival();
+        rules[2] = new GameOfLifeRuleStarvation();
+        rules[3] = new GameOfLifeRuleReproduction();
+        return rules;
     }
 }

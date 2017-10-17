@@ -39,7 +39,11 @@ public class GameOfLifeCell extends GridCell
 
     public void applyRules(iApplied[] rules)
     {
-
+        for (iApplied rule : rules)
+        {
+            if(rule.apply(this))
+                break;
+        }
     }
 
 
