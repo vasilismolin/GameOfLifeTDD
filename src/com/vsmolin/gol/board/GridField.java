@@ -26,4 +26,9 @@ public class GridField implements iField,iRulled
     {
         //to nothing
     }
+
+    public void flipState()
+    {
+
+    }
 }

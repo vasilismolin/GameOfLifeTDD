@@ -85,33 +85,37 @@ public class CellMatrix<P extends GridCell>
 
     public void draw()
     {
-        for(ArrayList<P> column : cellMatrix)
+        for(int coll = 0; coll < gridSize; coll++)
         {
-            for(P cell : column)
+            for(int row = 0; row < gridSize; row++)
             {
-                cell.draw();
+                getCell(coll, row).draw();
             }
+            System.out.print("\n");
         }
     }
 
     //Asumes rules are mutually exclusive
-    //TODO needs a better abstraction around rules
-    //how to restrict to GOL related rules
     public void applyRules(iApplied[] rulesToApply)
     {
-     /*   for(int coll = 0; coll < gridSize; coll++)
+        for(int coll = 0; coll < gridSize; coll++)
         {
             for(int row = 0; row < gridSize; row++)
             {
-                rulesToApply.
-                for(iApplied rule : rulesToApply.getRulesList())
-                {
-                    rule.setGrid(this)
-                    rule.appyly(cell);
-                    cell.applyRules(rulesToApply)
-                }
+                getCell(coll,row).applyRules(rulesToApply);
             }
-        }*/
+        }
+    }
+
+    public void flipState()
+    {
+        for(int coll = 0; coll < gridSize; coll++)
+        {
+            for(int row = 0; row < gridSize; row++)
+            {
+                getCell(coll,row).flipState();
+            }
+        }
     }
 
     protected boolean isSquare(ArrayList<ArrayList<P>> matrix)

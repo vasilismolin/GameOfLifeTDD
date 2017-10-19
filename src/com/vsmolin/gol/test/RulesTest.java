@@ -45,11 +45,13 @@ public class RulesTest
         String pattern = "010101000"; //the tested cell and 8 neighbours
         GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
         testCell.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertTrue(testCell.getAlive());
 
         pattern = "010110";
         GameOfLifeCell testCellEdge = buildCellWithNeighbours(pattern);
         testCellEdge.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertTrue(testCell.getAlive());
     }
     @Test
@@ -58,11 +60,13 @@ public class RulesTest
         String pattern = "000101000"; //the tested cell and 8 neighbours
         GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
         testCell.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertFalse(testCell.getAlive());
 
         pattern = "0101000";
         GameOfLifeCell testCellEdge = buildCellWithNeighbours(pattern);
         testCellEdge.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertFalse(testCell.getAlive());
     }
     @Test
@@ -71,11 +75,13 @@ public class RulesTest
         String pattern = "010111000"; //the tested cell and 8 neighbours
         GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
         testCell.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertFalse(testCell.getAlive());
 
         pattern = "0101110";
         GameOfLifeCell testCellEdge = buildCellWithNeighbours(pattern);
         testCellEdge.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertFalse(testCell.getAlive());
     }
     @Test
@@ -84,11 +90,13 @@ public class RulesTest
         String pattern = "100001000"; //the tested cell and 8 neighbours
         GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
         testCell.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertFalse(testCell.getAlive());
 
         pattern = "11";
         GameOfLifeCell testCellEdge = buildCellWithNeighbours(pattern);
         testCellEdge.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertFalse(testCell.getAlive());
     }
     @Test
@@ -97,11 +105,13 @@ public class RulesTest
         String pattern = "100101000"; //the tested cell and 8 neighbours
         GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
         testCell.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertTrue(testCell.getAlive());
 
         pattern = "10111";
         GameOfLifeCell testCellEdge = buildCellWithNeighbours(pattern);
         testCellEdge.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertTrue(testCell.getAlive());
     }
     @Test
@@ -110,11 +120,13 @@ public class RulesTest
         String pattern = "100000111"; //the tested cell and 8 neighbours
         GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
         testCell.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertTrue(testCell.getAlive());
 
         pattern = "10000111";
         GameOfLifeCell testCellEdge = buildCellWithNeighbours(pattern);
         testCellEdge.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertTrue(testCell.getAlive());
     }
     @Test
@@ -123,11 +135,13 @@ public class RulesTest
         String pattern = "110101010"; //the tested cell and 8 neighbours
         GameOfLifeCell testCell = buildCellWithNeighbours(pattern);
         testCell.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertFalse(testCell.getAlive());
 
         pattern = "110111";
         GameOfLifeCell testCellEdge = buildCellWithNeighbours(pattern);
         testCellEdge.applyRules(buildGOLRules());
+        testCell.flipState();
         Assert.assertFalse(testCell.getAlive());
     }
 
@@ -136,17 +150,12 @@ public class RulesTest
         GameOfLifeCellFactory factory = new GameOfLifeCellFactory(pattern);
         GameOfLifeCell mainCell = (GameOfLifeCell)factory.createPiece();
 
-        //int numNullNeighbours = pattern.length() - 9;
-        //GameOfLifeCell[] neighbours = new GameOfLifeCell[8];
         GameOfLifeCell[] neighbours = new GameOfLifeCell[pattern.length() - 1];
         for(int i=1;i<pattern.length();i++)
         {
             neighbours[i-1] = (GameOfLifeCell)factory.createPiece();
         }
-        /*while(numNullNeighbours>0)
-        {
-            neighbours[pattern.length()-2+numNullNeighbours] = null;
-        }*/
+
         mainCell.setNeighbours(neighbours);
         return mainCell;
     }

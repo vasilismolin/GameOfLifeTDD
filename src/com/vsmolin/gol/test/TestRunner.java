@@ -11,8 +11,8 @@ public class TestRunner {
                 GameTest.class,
                 BoardTest.class,
                 CellsTest.class,
-                RulesTest.class,
-                FlowTest.class
+                RulesTest.class//,
+                //FlowTest.class
         );
 
         for (Failure failure : result.getFailures())

@@ -45,4 +45,10 @@ public class GameOfLifeBoard implements iBoard, iDrawable, iRulled
         playingField.applyRules(rulesToApply);
         gamePieces.applyRules(rulesToApply);
     }
+
+    public void flipState()
+    {
+        playingField.flipState();
+        gamePieces.flipState();
+    }
 }

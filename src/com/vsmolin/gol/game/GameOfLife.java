@@ -24,6 +24,7 @@ public class GameOfLife implements iGame
     public void progress()
     {
         stateBoard.applyRules(cellRules);
+        stateBoard.flipState();
     }
 
     public void step(int numSteps)

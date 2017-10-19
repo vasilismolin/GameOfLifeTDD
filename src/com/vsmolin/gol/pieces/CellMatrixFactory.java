@@ -17,11 +17,11 @@ public class CellMatrixFactory
         ArrayList<ArrayList<C>> matrix = new ArrayList<ArrayList<C>>(size);
         try
         {
-            for (int width = 0; width < size; width++)
+            for (int coll = 0; coll < size; coll++)
             {
                 ArrayList<C> column = new ArrayList<C>(size);
                 matrix.add(column);
-                for (int length = 0; length < size; length++)
+                for (int row = 0; row < size; row++)
                 {
                     iGamePiece piece = factory.createPiece();
                     column.add((C)piece);   //TODO hack to not have to deal with genrics
@@ -37,11 +37,18 @@ public class CellMatrixFactory
         CellMatrix<C> newGridCells = new CellMatrix<C>();
         newGridCells.setGridSize(size);
         newGridCells.setCellMatrix(matrix);
+        for(int coll = 0; coll < size; coll++)
+        {
+            for(int row = 0; row < size; row++)
+            {
+                newGridCells.getCell(coll, row).setNeighbours(getNeighbours(coll, row, newGridCells));
+            }
+        }
 
         return newGridCells;
     }
 
-    private static <C extends GridCell> C[] getNeighbours(int coll, int row, CellMatrix<C> matrix)
+    private static <C extends GridCell> ArrayList<C> getNeighbours(int coll, int row, CellMatrix<C> matrix)
     {
         ArrayList<C> neighbours = new ArrayList<>();
         int[] indexes = {-1,0,1};
@@ -57,6 +64,6 @@ public class CellMatrixFactory
             }
         }
 
-        return (C[])neighbours.toArray(); //not the best solution here.
+        return neighbours; //not the best solution here.
     }
 }

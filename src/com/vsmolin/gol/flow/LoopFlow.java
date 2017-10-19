@@ -12,8 +12,6 @@ public class LoopFlow implements iGameFlow
     private int stepPeriod;
     private long stepCount;
 
-    private iGame gameReference;
-
     private ScheduledExecutorService loop;
     private ScheduledFuture activeLoop;
     private CountDownLatch advanceSteps;
@@ -77,7 +75,7 @@ public class LoopFlow implements iGameFlow
         public void run()
         {
             stepCount++;
-            //gameReference.progress();
+            gameState.progress();
             if(latch != null) latch.countDown();
         }
     }

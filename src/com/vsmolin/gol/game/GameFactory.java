@@ -3,7 +3,7 @@ package com.vsmolin.gol.game;
 import com.vsmolin.gol.board.*;
 import com.vsmolin.gol.flow.LoopFlow;
 import com.vsmolin.gol.pieces.*;
-import com.vsmolin.gol.rules.GridCellRule;
+import com.vsmolin.gol.rules.*;
 
 public class GameFactory
 {
@@ -35,8 +35,12 @@ public class GameFactory
             CellMatrix<GameOfLifeCell> newState = CellMatrixFactory.buildCellMatrix(size, testCellFactory);
         }
 
-        GridCellRule[] testedRules = new GridCellRule[0];
-        newGame.setRules(testedRules);
+        GridCellRule[] cellRules = new GridCellRule[4];
+        cellRules[0] = new GameOfLifeRuleOverpopulation();
+        cellRules[1] = new GameOfLifeRuleReproduction();
+        cellRules[2] = new GameOfLifeRuleStarvation();
+        cellRules[3] = new GameOfLifeRuleSurvival();
+        newGame.setRules(cellRules);
         //TODO need a factory for rule set
 
         LoopFlow newFlow = new LoopFlow(newGame, stepLength);

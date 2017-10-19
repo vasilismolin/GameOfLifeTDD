@@ -9,6 +9,11 @@ import org.junit.Test;
 public class FlowTest
 {
 
+    class NullGameOfLife extends GameOfLife
+    {
+        public void progress() {}
+    }
+
     @Test
     public void testLoopFlowStartStop()
     {
@@ -16,7 +21,7 @@ public class FlowTest
         int stepLength = 100;
         long expectedStepNumber = waitTime/stepLength;
 
-        GameOfLife testGame = new GameOfLife();
+        GameOfLife testGame = new NullGameOfLife();
         LoopFlow testFlow = new LoopFlow(testGame, stepLength);
         testFlow.start();
         try
@@ -35,8 +40,6 @@ public class FlowTest
         } catch (Exception e){}
         testFlow.stop();
         Assert.assertEquals(expectedStepNumber+2, testFlow.getStepNumber());
-
-
     }
 
     @Test
@@ -45,7 +48,7 @@ public class FlowTest
         int numSteps = 4;
         int stepLength = 100;
 
-        GameOfLife testGame = new GameOfLife();
+        GameOfLife testGame = new NullGameOfLife();
         LoopFlow testFlow = new LoopFlow(testGame, stepLength);
         testFlow.setStepsToAdvance(numSteps);
         testFlow.start();

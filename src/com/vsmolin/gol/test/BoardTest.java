@@ -35,6 +35,7 @@ public class BoardTest
 
 
     @Test
+    @Ignore
     public void boardDrawTest()
     {
         AtomicInteger fieldTestDriver = new AtomicInteger(0);

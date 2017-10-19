@@ -16,7 +16,7 @@ public class GameOfLifeRuleReproduction extends GridCellRule<GameOfLifeCell>
         }
         if(!cell.getAlive() && aliveNeigbours == 3)
         {
-            cell.setAlive(true);
+            cell.setNewAliveState(true);
             return true;
         }
         else

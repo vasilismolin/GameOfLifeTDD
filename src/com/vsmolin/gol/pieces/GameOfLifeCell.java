@@ -12,6 +12,7 @@ public class GameOfLifeCell extends GridCell
     //TODO does it need to have position
 
     private boolean alive;
+    private Boolean newAliveState = null;
     private ArrayList<GameOfLifeCell> neighbours;
 
     public GameOfLifeCell()
@@ -26,6 +27,15 @@ public class GameOfLifeCell extends GridCell
     public boolean getAlive()
     {
         return alive;
+    }
+
+    public void setNewAliveState(boolean alive)
+    {
+        this.newAliveState = alive;
+    }
+    public boolean getNewAliveState()
+    {
+        return newAliveState;
     }
 
     public boolean equals(Object otherCell)
@@ -46,9 +56,15 @@ public class GameOfLifeCell extends GridCell
         }
     }
 
+    public void flipState()
+    {
+        if(newAliveState != null)
+            setAlive(getNewAliveState());
+    }
 
     public void draw()
     {
+        System.out.print(getAlive() ? "1" : "0");
         //TODO implement
     }
 }

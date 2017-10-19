@@ -16,7 +16,7 @@ public class GameOfLifeRuleStarvation extends GridCellRule<GameOfLifeCell>
         }
         if(cell.getAlive() && aliveNeigbours < 2)
         {
-            cell.setAlive(false);
+            cell.setNewAliveState(false);
             return true;
         }
         else

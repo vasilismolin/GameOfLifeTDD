@@ -16,7 +16,7 @@ public class GameOfLifeRuleOverpopulation extends GridCellRule<GameOfLifeCell>
         }
         if(cell.getAlive() && aliveNeigbours > 3)
         {
-            cell.setAlive(false);
+            cell.setNewAliveState(false);
             return true;
         }
         else
