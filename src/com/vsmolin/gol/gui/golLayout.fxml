@@ -1,0 +1,15 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.canvas.Canvas?>
+<GridPane fx:controller="com.vsmolin.gol.gui.GOLController"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+
+    <children>
+        <Canvas fx:id="fieldCanvas"/>
+        <Button fx:id="B" onAction="#callTestB" layoutY="0" layoutX="0">TestB</Button>
+
+    </children>
+</GridPane>
